@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=for, initial-scale=1.0" />
+    <title>CATEGORIAS</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+
+  <body>
+    <h1>EDITAR CATEGORIA</h1>
+    <form action="/admin/categoria/edtcategoria/<%= categoria._id %>" method="POST">
+      <label>Nome:</label>
+      <input type="text" name="nome" value="<%= categoria.nome %>">
+      <button type="submit">Salvar</button>
+  </form>
+  </body>
+</html>

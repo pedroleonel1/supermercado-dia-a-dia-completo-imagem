@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRODUTOS</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+
+  <body>
+    <h1>Produtos Disponíveis</h1>
+
+    <div class="search">
+      <form
+        action="/admin/produto/filtrarproduto"
+        method="post"
+        class="form-search"
+      >
+        <input
+          type="text"
+          name="filtro"
+          placeholder="Digite a busca..."
+          class="input-search"
+        />
+        <button type="submit" class="botao salvar">
+          <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Pesquisar
+        </button>
+      </form>
+    </div>
+
+    <br />
+
+    <div class="espaco-botao-listar">
+      <a href="/" class="botao padrao">Voltar</a>
+      <a href="/admin/produto/addproduto" class="botao salvar">
+        Adicionar novo produto
+      </a>
+    </div>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Imagem</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Código de Barras</th>
+          <th>Data de Validade</th>
+          <th>Estoque Disponível</th>
+          <th>Preço</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% produtos.forEach(function(produto) { %>
+        <tr>
+          <td>
+            <% if (produto.imagem) { %>
+              <img
+                src="/img/produtos/<%= produto.imagem %>"
+                alt="Imagem do produto"
+                width="100"
+                height="100"
+              />
+            <% } else { %>
+              <span>Sem imagem</span>
+            <% } %>
+          </td>
+          <td><%= produto.nome %></td>
+          <td><%= produto.descricao %></td>
+          <td><%= produto.categoria ? produto.categoria.nome : 'Sem categoria' %></td>
+          <td><%= produto.codigobarra %></td>
+          <td>
+            <% if(produto.validade) { %>
+              <%= new Date(produto.validade).toLocaleDateString('pt-BR') %>
+            <% } else { %>
+              -
+            <% } %>
+          </td>
+          <td><%= produto.qtdproduto %></td>
+          <td>R$ <%= parseFloat(produto.preco).toFixed(2) %></td>
+          <td>
+            <a
+              href="/admin/produto/edtproduto/<%= produto._id %>"
+              class="botao padrao"
+              >Editar</a
+            >
+            <a
+              href="/admin/produto/delproduto/<%= produto._id %>"
+              class="botao excluir"
+              onclick="return confirm('Deseja realmente excluir este produto?');"
+              >Excluir</a
+            >
+            <a
+              href="/admin/destaques/addDestaques/<%= produto._id %>"
+              class="botao salvar"
+              >Adicionar Destaque</a
+            >
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

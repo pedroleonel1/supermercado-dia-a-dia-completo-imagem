@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CATEGORIAS</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+
+  <body>
+    <h1>CATEGORIAS DISPONIVEIS</h1>
+    <div class="search">
+      <form
+        action="/admin/categoria/filtrarcategoria"
+        method="post"
+        class="form-search"
+      >
+        <input
+          type="text"
+          name="filtro"
+          placeholder="Digite a busca..."
+          class="input-search"
+        /><button type="submit" class="button salvar">
+          <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Pesquisar
+        </button>
+      </form>
+    </div>
+
+    <br />
+    <div class="espaco-botao-listar">
+      <a href="/" class="botao padrao"> Voltar</a>
+      <a href="/admin/categoria/addcategoria" class="botao salvar"
+        >Adicionar novo produto</a
+      >
+    </div>
+
+    <table border="2">
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Opções</th>
+      </tr>
+      <% categorias.forEach(function(categoria) { %>
+      <tr>
+        <td><%= categoria.nome %></td>
+        <td><%= categoria.descricao %></td>
+        <td>
+          <a
+            href="/admin/categoria/edtcategoria/<%= categoria.id %>"
+            class="botao padrao"
+            >Editar</a
+          >
+
+          <a
+            href="/admin/categoria/delcategoria/<%= categoria.id %>"
+            class="botao excluir"
+            >Excluir</a
+          >
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

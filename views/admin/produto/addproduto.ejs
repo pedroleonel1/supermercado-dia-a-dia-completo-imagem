@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=for, initial-scale=1.0" />
+    <title>PRODUTOS</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+
+  <body>
+    <h1>ADICIONAR PRODUTO</h1>
+    <form action="" method="post">
+      <label for="">Nome</label>
+      <input type="text" name="nome" id="nome" /><br />
+      <label for="">Descrição</label>
+      <input type="text" name="descricao" id="descricao" /><br />
+      <label type="">Categoria</label>
+      <select name="categoria" required>
+        <option disabled selected>--Seleciome uma categoria--</option>
+        <% categorias.forEach(function(categoria) { %>
+        <option value="<%= categoria.id %>"><%= categoria.nome %></option>
+        <% }) %>
+      </select>
+      <label type="">Codigo de Barras</label>
+      <input type="text" name="codigobarra" id="codigobarra" /><br />
+      <label type="">Data de Validade</label>
+      <input type="date" name="validade" id="validade" /><br />
+      <label type="">Estoque Disponivel</label>
+      <input type="number" name="qtdproduto" id="qtdproduto" /><br />
+      <label type="">Preço</label>
+      <input type="number" name="preco" id="preco" /><br />
+      <label for="imagem">Imagem do Produto</label>
+      <input type="file" name="imagem" id="imagem" accept="image/*"><br>
+      <br />
+      <div class="espaco-botao">
+        <a href="/admin/produto/lstproduto" class="botao padrao"> Voltar</a>
+        <button type="submit" value="Salvar" class="botao salvar">
+          Salvar
+        </button>
+      </div>
+    </form>
+  </body>
+</html>

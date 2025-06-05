@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destaques</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+    }
+  </style>
+</head>
+<body class="text-gray-800 font-sans">
+
+  <div class="max-w-7xl mx-auto px-6 py-10">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold text-gray-700 mb-4 sm:mb-0">📦 Lista de Produtos em Destaque</h1>
+      <a href="/admin/destaques/add" class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg shadow-md transition">
+        + Adicionar Destaque
+      </a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+      <table class="min-w-full divide-y divide-gray-200 text-sm text-left">
+        <thead class="bg-gray-100 text-gray-600 uppercase text-xs font-medium">
+          <tr>
+            <th class="px-6 py-4">Imagem</th>
+            <th class="px-6 py-4">Nome</th>
+            <th class="px-6 py-4">Descrição</th>
+            <th class="px-6 py-4">Categoria</th>
+            <th class="px-6 py-4">Preço</th>
+            <th class="px-6 py-4">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-100">
+          <% destaques.forEach((destaque) => { %>
+            <tr class="hover:bg-gray-50 transition">
+              <td class="px-6 py-4">
+                <img src="/imagens/<%= destaque.imagem %>" alt="Imagem" class="w-20 h-20 object-cover rounded-lg shadow" />
+              </td>
+              <td class="px-6 py-4 font-semibold text-gray-700"><%= destaque.nome %></td>
+              <td class="px-6 py-4 text-gray-600"><%= destaque.descricao %></td>
+              <td class="px-6 py-4">
+                <span class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded">
+                  <%= destaque.categoria ? destaque.categoria : 'Sem categoria' %>
+                </span>
+              </td>
+              <td class="px-6 py-4 text-green-600 font-semibold">
+                <%= typeof destaque.preco === 'number' ? 'R$ ' + destaque.preco.toFixed(2) : 'Preço não definido' %>
+              </td>
+              <td class="px-6 py-4 space-x-2">
+                <a href="/admin/destaques/edit/<%= destaque._id %>" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg shadow-sm text-xs transition">
+                  ✏️ Editar
+                </a>
+                <a href="/admin/destaques/deletar/<%= destaque._id %>" class="inline-block bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded-lg shadow-sm text-xs transition">
+                  🗑️ Excluir
+                </a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+</body>
+</html>

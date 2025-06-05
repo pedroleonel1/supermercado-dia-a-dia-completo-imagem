@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Produto</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+
+  <body>
+    <h1>Editar Produto</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+      <label for="nome">Nome</label>
+      <input type="text" name="nome" id="nome" value="<%= produto.nome %>" /><br />
+
+      <label for="descricao">Descrição</label>
+      <input type="text" name="descricao" id="descricao" value="<%= produto.descricao %>" /><br />
+
+      <label for="categoria">Categoria</label>
+      <input type="text" name="categoria" id="categoria" value="<%= produto.categoria %>" /><br />
+
+      <label for="codigobarra">Código de Barras</label>
+      <input type="text" name="codigobarra" id="codigobarra" value="<%= produto.codigobarra %>" /><br />
+
+      <label for="validade">Data de Validade</label>
+      <input type="date" name="validade" id="validade" value="<%= produto.validade.toISOString().split('T')[0] %>" /><br />
+
+      <label for="qtdproduto">Estoque Disponível</label>
+      <input type="number" name="qtdproduto" id="qtdproduto" value="<%= produto.qtdproduto %>" /><br />
+
+      <label for="preco">Preço</label>
+      <input type="number" name="preco" id="preco" step="0.01" value="<%= produto.preco %>" /><br />
+
+      <label for="imagem">Imagem do Produto</label><br />
+      <% if (produto.imagem) { %>
+        <img src="/img/<%= produto.imagem %>" alt="Imagem atual" style="max-width:150px; margin-bottom:10px;" /><br />
+      <% } %>
+      <input type="file" name="imagem" id="imagem" accept="image/*" /><br /><br />
+
+      <div class="espaco-botao">
+        <a href="/admin/produto/lstproduto" class="botao padrao">Voltar</a>
+        <button type="submit" class="botao salvar">Salvar</button>
+      </div>
+    </form>
+  </body>
+</html>

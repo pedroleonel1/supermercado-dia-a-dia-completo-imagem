@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>USUARIOS</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+
+  <body>
+    <h1>USUARIOS</h1>
+    <div class="search">
+      <form
+        action="/admin/usuario/filtrarusuario"
+        method="post"
+        class="form-search"
+      >
+        <input
+          type="text"
+          name="filtro"
+          placeholder="Digite a busca..."
+          class="input-search"
+        /><button type="submit" class="button salvar">
+          <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Pesquisar
+        </button>
+      </form>
+    </div>
+
+    <br />
+    <div class="espaco-botao-listar">
+      <a href="/" class="botao padrao"> Voltar</a>
+      <a href="/admin/usuario/addusuario" class="botao salvar"
+        >Adicionar novo produto</a
+      >
+    </div>
+
+    <table border="1">
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Senha</th>
+        <th>Opções</th>
+      </tr>
+      <% usuarios.forEach(function(usuario){%>
+      <tr>
+        <td><%=usuario.nome%></td>
+        <td><%=usuario.email%></td>
+        <td><%=usuario.senha%></td>
+        <td>
+          <a
+            href="/admin/usuario/edtusuario/<%= usuario.id %>"
+            class="botao padrao"
+            >Editar</a
+          >
+
+          <a
+            href="/admin/usuario/delusuario/<%= usuario.id %>"
+            class="botao excluir"
+            >Excluir</a
+          >
+        </td>
+      </tr>
+      <%}) %>
+    </table>
+  </body>
+</html>
